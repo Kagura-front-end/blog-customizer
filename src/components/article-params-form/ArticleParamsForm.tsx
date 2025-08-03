@@ -1,11 +1,11 @@
-import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react';
+import {useEffect, useRef, useState, type Dispatch, type SetStateAction} from 'react';
 import cn from 'classnames';
 
-import { ArrowButton } from 'components/arrow-button';
-import { Button } from 'components/button';
-import { Separator } from '../separator/Separator';
-import { StyleSelect } from '../select/StyleSelect';
-import { RadioGroup } from '../radio-group/RadioGroup';
+import {ArrowButton} from 'components/arrow-button';
+import {Button} from 'components/button';
+import {Separator} from '../separator/Separator';
+import {StyleSelect} from '../select/StyleSelect';
+import {RadioGroup} from '../radio-group/RadioGroup';
 
 import {
 	StyleOption,
@@ -76,7 +76,7 @@ export const ArticleParamsForm = ({
 
 	return (
 		<>
-			<ArrowButton onClick={toggleForm} isOpen={isFormOpen} />
+			<ArrowButton onClick={toggleForm} isOpen={isFormOpen}/>
 			<aside className={cn(styles.container, container)} ref={asideRef}>
 				<form className={styles.form} onSubmit={handleSubmit}>
 					<StyleSelect
@@ -101,7 +101,7 @@ export const ArticleParamsForm = ({
 						title="цвет шрифта"
 					/>
 
-					<Separator />
+					<Separator/>
 
 					<StyleSelect
 						selected={backgroundColorSelectState}
@@ -118,8 +118,8 @@ export const ArticleParamsForm = ({
 					/>
 
 					<div className={styles.bottomContainer}>
-						<Button title="Сбросить" type="reset" onClick={onResetClick} />
-						<Button title="Применить" type="submit" />
+						<Button title="Сбросить" type="reset" onClick={onResetClick}/>
+						<Button title="Применить" type="submit"/>
 					</div>
 				</form>
 			</aside>

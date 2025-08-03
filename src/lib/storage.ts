@@ -1,4 +1,4 @@
-import { StyleOption } from '../constants/articleProps';
+import {StyleOption} from '../constants/articleProps';
 
 export type StoredParams = {
 	fontSelectState: StyleOption;
@@ -24,5 +24,5 @@ export const saveParams = (params: StoredParams) => {
 		localStorage.setItem(STORAGE_KEY, JSON.stringify(params));
 	} catch (error) {
 		console.error('Failed to save params to localStorage:', error);
-		}
+	}
 };

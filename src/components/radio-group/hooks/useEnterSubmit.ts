@@ -1,12 +1,12 @@
-import { useEffect, useRef } from 'react';
-import { StyleOption } from 'src/constants/articleProps';
+import {useEffect, useRef} from 'react';
+import {StyleOption} from 'src/constants/articleProps';
 
 type UseEnterSubmitProps = {
 	onChange?: (option: StyleOption) => void;
 	option: StyleOption;
 };
 
-export const useEnterSubmit = ({ onChange, option }: UseEnterSubmitProps) => {
+export const useEnterSubmit = ({onChange, option}: UseEnterSubmitProps) => {
 	const ref = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {

@@ -1,4 +1,4 @@
-import { Text } from 'components/text';
+import {Text} from 'components/text';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
@@ -7,7 +7,7 @@ interface ButtonProps {
 	type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
 }
 
-export const Button = ({ title, onClick, type }: ButtonProps) => (
+export const Button = ({title, onClick, type}: ButtonProps) => (
 	<button className={styles.button} type={type} onClick={onClick}>
 		<Text weight={800} uppercase>
 			{title}

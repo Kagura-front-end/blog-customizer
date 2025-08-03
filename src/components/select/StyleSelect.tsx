@@ -1,15 +1,15 @@
-import { useState, useRef } from 'react';
-import type { MouseEventHandler } from 'react';
+import {useState, useRef} from 'react';
+import type {MouseEventHandler} from 'react';
 import clsx from 'clsx';
 
-import { StyleOption } from 'src/constants/articleProps';
-import { Text } from 'components/text';
+import {StyleOption} from 'src/constants/articleProps';
+import {Text} from 'components/text';
 import arrowDown from 'src/images/arrow-down.svg';
 
-import { DropdownOption } from './DropdownOption';
-import { isFontFamilyClass } from './helpers/isFontFamilyClass';
-import { useEnterSubmit } from './hooks/useEnterSubmit';
-import { useOutsideClickClose } from './hooks/useOutsideClickClose';
+import {DropdownOption} from './DropdownOption';
+import {isFontFamilyClass} from './helpers/isFontFamilyClass';
+import {useEnterSubmit} from './hooks/useEnterSubmit';
+import {useOutsideClickClose} from './hooks/useOutsideClickClose';
 
 import styles from './Select.module.scss';
 
@@ -23,7 +23,7 @@ type SelectProps = {
 };
 
 export const StyleSelect = (props: SelectProps) => {
-	const { options, placeholder, selected, onChange, onClose, title } = props;
+	const {options, placeholder, selected, onChange, onClose, title} = props;
 
 	const [isOpen, setIsOpen] = useState(false);
 	const rootRef = useRef<HTMLDivElement>(null);
@@ -66,7 +66,7 @@ export const StyleSelect = (props: SelectProps) => {
 				<img
 					src={arrowDown}
 					alt='иконка стрелочки'
-					className={clsx(styles.arrow, { [styles.arrow_open]: isOpen })}
+					className={clsx(styles.arrow, {[styles.arrow_open]: isOpen})}
 				/>
 				<div
 					className={clsx(

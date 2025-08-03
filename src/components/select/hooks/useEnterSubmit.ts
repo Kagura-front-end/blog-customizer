@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
 type UseEnterSubmit = {
 	onChange: React.Dispatch<React.SetStateAction<boolean>>;
@@ -6,9 +6,9 @@ type UseEnterSubmit = {
 };
 
 export const useEnterSubmit = ({
-	placeholderRef,
-	onChange,
-}: UseEnterSubmit) => {
+								   placeholderRef,
+								   onChange,
+							   }: UseEnterSubmit) => {
 	useEffect(() => {
 		const placeholderEl = placeholderRef.current;
 		if (!placeholderEl) return;

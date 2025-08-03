@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import cn from 'classnames';
 import arrow from 'src/images/arrow.svg';
 import styles from './ArrowButton.module.scss';
@@ -10,7 +10,7 @@ interface ArrowButtonProps {
 	isOpen?: boolean;
 }
 
-export const ArrowButton: FC<ArrowButtonProps> = ({ onClick, isOpen }) => (
+export const ArrowButton: FC<ArrowButtonProps> = ({onClick, isOpen}) => (
 	<div
 		role="button"
 		aria-label="Открыть / закрыть настройки статьи"

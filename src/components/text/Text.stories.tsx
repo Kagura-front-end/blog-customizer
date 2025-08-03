@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { Text } from './Text';
+import {Text} from './Text';
 
 const meta: Meta<typeof Text> = {
 	component: Text,
@@ -13,29 +13,29 @@ export const TextStory: Story = {
 	argTypes: {
 		as: {
 			options: ['h1', 'h2', 'div', 'span'],
-			control: { type: 'select' },
+			control: {type: 'select'},
 		},
 		dynamic: {
 			control: 'boolean',
 		},
 		size: {
 			options: [12, 18, 22, 25, 31, 45],
-			control: { type: 'select' },
+			control: {type: 'select'},
 		},
 		weight: {
 			options: [400, 800],
-			control: { type: 'select' },
+			control: {type: 'select'},
 		},
 		fontStyle: {
 			options: ['italic', 'normal'],
-			control: { type: 'select' },
+			control: {type: 'select'},
 		},
 		uppercase: {
 			control: 'boolean',
 		},
 		align: {
 			options: ['center', 'left'],
-			control: { type: 'select' },
+			control: {type: 'select'},
 		},
 		family: {
 			options: [
@@ -45,7 +45,7 @@ export const TextStory: Story = {
 				'days-one',
 				'merriweather',
 			],
-			control: { type: 'select' },
+			control: {type: 'select'},
 		},
 	},
 	render: (args) => (

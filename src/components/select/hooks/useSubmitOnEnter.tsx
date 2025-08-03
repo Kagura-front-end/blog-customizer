@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { StyleOption } from 'src/constants/articleProps';
+import {useEffect} from 'react';
+import {StyleOption} from 'src/constants/articleProps';
 
 type UseSubmitOnEnterProps = {
 	onClick: (value: StyleOption['value']) => void;
