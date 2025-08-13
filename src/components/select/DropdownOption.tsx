@@ -36,9 +36,14 @@ export const DropdownOption = ({ option, onClick }: DropdownOptionProps) => {
 		};
 	}, [onClick, value]);
 
+	const getStyleClass = (className: string | undefined) => {
+		if (!className) return '';
+		return className in styles ? styles[className as keyof typeof styles] : '';
+	};
+
 	return (
 		<li
-			className={clsx(styles.option, styles[optionClassName || ''])}
+			className={clsx(styles.option, getStyleClass(optionClassName))}
 			value={value}
 			onClick={handleClick}
 			tabIndex={0}
