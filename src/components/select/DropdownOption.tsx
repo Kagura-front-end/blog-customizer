@@ -1,9 +1,9 @@
-import {useEffect, useRef} from 'react';
-import type {MouseEventHandler} from 'react';
+import { useEffect, useRef } from 'react';
+import type { MouseEventHandler } from 'react';
 import clsx from 'clsx';
-import {StyleOption} from 'src/constants/articleProps';
-import {Text} from 'components/text';
-import {isFontFamilyClass} from './helpers/isFontFamilyClass';
+import { StyleOption } from 'src/constants/articleProps';
+import { Text } from 'components/text';
+import { isFontFamilyClass } from './helpers/isFontFamilyClass';
 
 import styles from './Select.module.scss';
 
@@ -12,8 +12,8 @@ type DropdownOptionProps = {
 	onClick: (value: StyleOption['value']) => void;
 };
 
-export const DropdownOption = ({option, onClick}: DropdownOptionProps) => {
-	const {value, title, optionClassName, className} = option;
+export const DropdownOption = ({ option, onClick }: DropdownOptionProps) => {
+	const { value, title, optionClassName, className } = option;
 	const optionRef = useRef<HTMLLIElement>(null);
 
 	const handleClick: MouseEventHandler<HTMLLIElement> = () => {
@@ -43,8 +43,7 @@ export const DropdownOption = ({option, onClick}: DropdownOptionProps) => {
 			onClick={handleClick}
 			tabIndex={0}
 			data-testid={`select-option-${value}`}
-			ref={optionRef}
-		>
+			ref={optionRef}>
 			<Text family={isFontFamilyClass(className) ? className : undefined}>
 				{title}
 			</Text>

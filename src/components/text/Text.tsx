@@ -1,6 +1,6 @@
-import {ElementType, ReactNode} from 'react';
-import {clsx} from 'clsx';
-import {FontFamiliesClasses} from 'src/constants/articleProps';
+import { ElementType, ReactNode } from 'react';
+import { clsx } from 'clsx';
+import { FontFamiliesClasses } from 'src/constants/articleProps';
 
 import styles from './index.module.scss';
 
@@ -18,17 +18,17 @@ type TextProps = {
 };
 
 export const Text = ({
-						 children,
-						 as: Tag = 'div',
-						 size = 18,
-						 dynamic = false,
-						 weight = 400,
-						 fontStyle = 'normal',
-						 uppercase = false,
-						 align = 'left',
-						 family = 'open-sans',
-						 dynamicLite = false,
-					 }: TextProps) => {
+	children,
+	as: Tag = 'div',
+	size = 18,
+	dynamic = false,
+	weight = 400,
+	fontStyle = 'normal',
+	uppercase = false,
+	align = 'left',
+	family = 'open-sans',
+	dynamicLite = false,
+}: TextProps) => {
 	const className = clsx(
 		styles.text,
 		styles[`size${size}`],

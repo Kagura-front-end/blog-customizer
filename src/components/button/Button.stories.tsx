@@ -1,5 +1,5 @@
-import type {Meta, StoryObj} from '@storybook/react';
-import {Button} from './Button';
+import type { Meta, StoryObj } from '@storybook/react';
+import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
 	component: Button,
@@ -12,13 +12,13 @@ export const ButtonStory: Story = {
 	render: () => (
 		<>
 			<Button
-				title="Сбросить"
-				type="reset"
+				title='Сбросить'
+				type='reset'
 				onClick={() => alert('Клик по кнопке «Сбросить»')}
 			/>
 			<Button
-				title="Применить"
-				type="submit"
+				title='Применить'
+				type='submit'
 				onClick={() => alert('Клик по кнопке «Применить»')}
 			/>
 		</>

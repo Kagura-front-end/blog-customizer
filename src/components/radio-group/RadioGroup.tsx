@@ -1,6 +1,6 @@
-import {StyleOption} from 'src/constants/articleProps';
-import {Text} from 'components/text';
-import {Option} from './Option';
+import { StyleOption } from 'src/constants/articleProps';
+import { Text } from 'components/text';
+import { Option } from './Option';
 
 import styles from './RadioGroup.module.scss';
 
@@ -13,12 +13,12 @@ type RadioGroupProps = {
 };
 
 export const RadioGroup = ({
-							   name,
-							   options,
-							   selected,
-							   onChange,
-							   title,
-						   }: RadioGroupProps) => {
+	name,
+	options,
+	selected,
+	onChange,
+	title,
+}: RadioGroupProps) => {
 	const handleChange = (option: StyleOption) => {
 		onChange?.(option);
 	};

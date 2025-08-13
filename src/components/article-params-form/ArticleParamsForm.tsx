@@ -1,11 +1,17 @@
-import {useEffect, useRef, useState, type Dispatch, type SetStateAction} from 'react';
+import {
+	useEffect,
+	useRef,
+	useState,
+	type Dispatch,
+	type SetStateAction,
+} from 'react';
 import cn from 'classnames';
 
-import {ArrowButton} from 'components/arrow-button';
-import {Button} from 'components/button';
-import {Separator} from '../separator/Separator';
-import {StyleSelect} from '../select/StyleSelect';
-import {RadioGroup} from '../radio-group/RadioGroup';
+import { ArrowButton } from 'components/arrow-button';
+import { Button } from 'components/button';
+import { Separator } from '../separator/Separator';
+import { StyleSelect } from '../select/StyleSelect';
+import { RadioGroup } from '../radio-group/RadioGroup';
 
 import {
 	StyleOption,
@@ -39,25 +45,28 @@ type ArticleParamsFormProps = {
 };
 
 export const ArticleParamsForm = ({
-									  fontSelectState,
-									  setFontSelectState,
-									  fontSizeSelectState,
-									  setFontSizeSelectState,
-									  fontColorSelectState,
-									  setFontColorSelectState,
-									  backgroundColorSelectState,
-									  setBackgroundColorSelectState,
-									  contentWidthSelectState,
-									  setContentWidthSelectState,
-									  onResetClick,
-									  onSubmitClick,
-								  }: ArticleParamsFormProps) => {
+	fontSelectState,
+	setFontSelectState,
+	fontSizeSelectState,
+	setFontSizeSelectState,
+	fontColorSelectState,
+	setFontColorSelectState,
+	backgroundColorSelectState,
+	setBackgroundColorSelectState,
+	contentWidthSelectState,
+	setContentWidthSelectState,
+	onResetClick,
+	onSubmitClick,
+}: ArticleParamsFormProps) => {
 	const [isFormOpen, setIsFormOpen] = useState(false);
 	const asideRef = useRef<HTMLElement>(null);
 
 	useEffect(() => {
 		const handleClickOutside = (event: MouseEvent) => {
-			if (asideRef.current && !asideRef.current.contains(event.target as Node)) {
+			if (
+				asideRef.current &&
+				!asideRef.current.contains(event.target as Node)
+			) {
 				setIsFormOpen(false);
 			}
 		};
@@ -76,21 +85,21 @@ export const ArticleParamsForm = ({
 
 	return (
 		<>
-			<ArrowButton onClick={toggleForm} isOpen={isFormOpen}/>
+			<ArrowButton onClick={toggleForm} isOpen={isFormOpen} />
 			<aside className={cn(styles.container, container)} ref={asideRef}>
 				<form className={styles.form} onSubmit={handleSubmit}>
 					<StyleSelect
 						selected={fontSelectState}
 						options={fontFamilyOptions}
 						onChange={setFontSelectState}
-						title="Шрифт"
+						title='Шрифт'
 					/>
 
 					<RadioGroup
-						name="radioFonts"
+						name='radioFonts'
 						options={fontSizeOptions}
 						selected={fontSizeSelectState}
-						title="размер шрифта"
+						title='размер шрифта'
 						onChange={setFontSizeSelectState}
 					/>
 
@@ -98,28 +107,28 @@ export const ArticleParamsForm = ({
 						selected={fontColorSelectState}
 						options={fontColors}
 						onChange={setFontColorSelectState}
-						title="цвет шрифта"
+						title='цвет шрифта'
 					/>
 
-					<Separator/>
+					<Separator />
 
 					<StyleSelect
 						selected={backgroundColorSelectState}
 						options={backgroundColors}
 						onChange={setBackgroundColorSelectState}
-						title="цвет фона"
+						title='цвет фона'
 					/>
 
 					<StyleSelect
 						selected={contentWidthSelectState}
 						options={contentWidthArr}
 						onChange={setContentWidthSelectState}
-						title="ширина контента"
+						title='ширина контента'
 					/>
 
 					<div className={styles.bottomContainer}>
-						<Button title="Сбросить" type="reset" onClick={onResetClick}/>
-						<Button title="Применить" type="submit"/>
+						<Button title='Сбросить' type='reset' onClick={onResetClick} />
+						<Button title='Применить' type='submit' />
 					</div>
 				</form>
 			</aside>

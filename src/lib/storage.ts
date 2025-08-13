@@ -1,4 +1,4 @@
-import {StyleOption} from '../constants/articleProps';
+import { StyleOption } from '../constants/articleProps';
 
 export type StoredParams = {
 	fontSelectState: StyleOption;
