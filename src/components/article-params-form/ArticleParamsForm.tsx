@@ -7,11 +7,11 @@ import {
 } from 'react';
 import cn from 'classnames';
 
-import { ArrowButton } from 'components/arrow-button';
-import { Button } from 'components/button';
-import { Separator } from '../separator/Separator';
-import { StyleSelect } from '../select/StyleSelect';
-import { RadioGroup } from '../radio-group/RadioGroup';
+import {ArrowButton} from 'components/arrow-button';
+import {Button} from 'components/button';
+import {Separator} from '../separator/Separator';
+import {StyleSelect} from '../select/StyleSelect';
+import {RadioGroup} from '../radio-group/RadioGroup';
 
 import {
 	StyleOption,
@@ -23,7 +23,7 @@ import {
 } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
-import { useClose } from './hooks/useClose';
+import {useClose} from 'src/universal_hooks/useClose';
 
 type ArticleParamsFormProps = {
 	fontSelectState: StyleOption;
@@ -63,12 +63,16 @@ export const ArticleParamsForm = ({
 	const asideRef = useRef<HTMLElement>(null);
 
 	const handleClose = useCallback(() => setIsFormOpen(false), []);
-
 	useClose({ isOpen: isFormOpen, onClose: handleClose, rootRef: asideRef });
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		onSubmitClick();
+	};
+
+	const handleFormReset = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		onResetClick();
 	};
 
 	const toggleForm = () => setIsFormOpen((prev) => !prev);
@@ -78,19 +82,19 @@ export const ArticleParamsForm = ({
 		<>
 			<ArrowButton onClick={toggleForm} isOpen={isFormOpen} />
 			<aside className={cn(styles.container, container)} ref={asideRef}>
-				<form className={styles.form} onSubmit={handleSubmit}>
+				<form className={styles.form} onSubmit={handleSubmit} onReset={handleFormReset}>
 					<StyleSelect
 						selected={fontSelectState}
 						options={fontFamilyOptions}
 						onChange={setFontSelectState}
-						title="Шрифт"
+						title='Шрифт'
 					/>
 
 					<RadioGroup
-						name="radioFonts"
+						name='radioFonts'
 						options={fontSizeOptions}
 						selected={fontSizeSelectState}
-						title="размер шрифта"
+						title='размер шрифта'
 						onChange={setFontSizeSelectState}
 					/>
 
@@ -98,7 +102,7 @@ export const ArticleParamsForm = ({
 						selected={fontColorSelectState}
 						options={fontColors}
 						onChange={setFontColorSelectState}
-						title="цвет шрифта"
+						title='цвет шрифта'
 					/>
 
 					<Separator />
@@ -107,19 +111,19 @@ export const ArticleParamsForm = ({
 						selected={backgroundColorSelectState}
 						options={backgroundColors}
 						onChange={setBackgroundColorSelectState}
-						title="цвет фона"
+						title='цвет фона'
 					/>
 
 					<StyleSelect
 						selected={contentWidthSelectState}
 						options={contentWidthArr}
 						onChange={setContentWidthSelectState}
-						title="ширина контента"
+						title='ширина контента'
 					/>
 
 					<div className={styles.bottomContainer}>
-						<Button title="Сбросить" type="reset" onClick={onResetClick} />
-						<Button title="Применить" type="submit" />
+						<Button title='Сбросить' type='reset' />
+						<Button title='Применить' type='submit' />
 					</div>
 				</form>
 			</aside>

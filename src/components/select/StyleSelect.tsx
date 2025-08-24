@@ -1,105 +1,83 @@
-import { useState, useRef } from 'react';
-import type { MouseEventHandler } from 'react';
-import clsx from 'clsx';
-
-import { StyleOption } from 'src/constants/articleProps';
-import { Text } from 'components/text';
-import arrowDown from 'src/images/arrow-down.svg';
-
-import { DropdownOption } from './DropdownOption';
-import { isFontFamilyClass } from './helpers/isFontFamilyClass';
-import { useEnterSubmit } from './hooks/useEnterSubmit';
-import { useOutsideClickClose } from './hooks/useOutsideClickClose';
+import {useRef, useState, useCallback} from 'react';
+import cn from 'classnames';
 
 import styles from './Select.module.scss';
 
-type SelectProps = {
-	selected: StyleOption | null;
+import {StyleOption} from 'src/constants/articleProps';
+import {useClose} from 'src/universal_hooks/useClose';
+import {useEnterSubmit} from './hooks/useEnterSubmit';
+
+type StyleSelectProps = {
+	title: string;
 	options: StyleOption[];
-	placeholder?: string;
-	onChange?: (selected: StyleOption) => void;
-	onClose?: () => void;
-	title?: string;
+	selected: StyleOption;
+	onChange: (next: StyleOption) => void;
 };
 
-export const StyleSelect = (props: SelectProps) => {
-	const { options, placeholder, selected, onChange, onClose, title } = props;
-
+export const StyleSelect = ({
+								title,
+								options,
+								selected,
+								onChange,
+							}: StyleSelectProps) => {
 	const [isOpen, setIsOpen] = useState(false);
+
 	const rootRef = useRef<HTMLDivElement>(null);
 	const placeholderRef = useRef<HTMLDivElement>(null);
 
-	useOutsideClickClose({
-		isOpen,
-		rootRef,
-		onClose,
-		onChange: setIsOpen,
-	});
+	const toggleOpen = () => setIsOpen((v) => !v);
+	const close = useCallback(() => setIsOpen(false), []);
+
+	useClose<HTMLDivElement>({isOpen, onClose: close, rootRef});
 
 	useEnterSubmit({
 		placeholderRef,
 		onChange: setIsOpen,
 	});
 
-	const handleOptionClick = (option: StyleOption) => {
+	const handleSelect = (option: StyleOption) => {
+		onChange(option);
 		setIsOpen(false);
-		onChange?.(option);
-	};
-
-	const handlePlaceholderClick: MouseEventHandler<HTMLDivElement> = () => {
-		setIsOpen((prev) => !prev);
 	};
 
 	return (
-		<div className={styles.container}>
-			{title && (
-				<Text size={12} weight={800} uppercase>
-					{title}
-				</Text>
-			)}
-			<div
-				className={styles.selectWrapper}
-				ref={rootRef}
-				data-is-active={isOpen}
-				data-testid='selectWrapper'>
-				<img
-					src={arrowDown}
-					alt='иконка стрелочки'
-					className={clsx(styles.arrow, { [styles.arrow_open]: isOpen })}
-				/>
-				<div
-					className={clsx(
-						styles.placeholder,
-						styles[selected?.optionClassName || '']
-					)}
-					data-selected={!!selected?.value}
-					onClick={handlePlaceholderClick}
-					role='button'
-					tabIndex={0}
-					ref={placeholderRef}>
-					<Text
-						family={
-							isFontFamilyClass(selected?.className)
-								? selected.className
-								: undefined
-						}>
-						{selected?.title || placeholder}
-					</Text>
-				</div>
-				{isOpen && (
-					<ul className={styles.select} data-testid='selectDropdown'>
-						{options
-							.filter((option) => selected?.value !== option.value)
-							.map((option) => (
-								<DropdownOption
-									key={option.value}
-									option={option}
-									onClick={() => handleOptionClick(option)}
-								/>
-							))}
-					</ul>
-				)}
+		<div className={styles.wrapper} ref={rootRef}>
+			<div className={styles.header}>
+				<span className={styles.title}>{title}</span>
 			</div>
+
+			<div
+				className={cn(styles.placeholder, {[styles.placeholder_open]: isOpen})}
+				onClick={toggleOpen}
+				ref={placeholderRef}
+				role="button"
+				aria-haspopup="listbox"
+				aria-expanded={isOpen}
+				tabIndex={0}
+			>
+				<span className={styles.placeholderText}>{selected.title}</span>
+				<span className={cn(styles.chevron, {[styles.chevron_open]: isOpen})}/>
+			</div>
+
+			{isOpen && (
+				<ul className={styles.dropdown} role="listbox">
+					{options.map((opt) => {
+						const active = opt.value === selected.value;
+						return (
+							<li
+								key={String(opt.value)}
+								role="option"
+								aria-selected={active}
+								className={cn(styles.option, {[styles.option_active]: active})}
+								onClick={() => handleSelect(opt)}
+								tabIndex={0}
+							>
+								{opt.title}
+							</li>
+						);
+					})}
+				</ul>
+			)}
 		</div>
 	);
 };

@@ -1,10 +1,10 @@
-import {useState, useEffect, CSSProperties} from 'react';
+import { useState, useEffect, CSSProperties } from 'react';
 import clsx from 'clsx';
 
-import {Article} from 'components/article/Article';
-import {ArticleParamsForm} from 'components/article-params-form/ArticleParamsForm';
-import {StyleOption, defaultArticleState} from '../../constants/articleProps';
-import {loadParams, saveParams} from '../../lib/storage';
+import { Article } from 'components/article/Article';
+import { ArticleParamsForm } from 'components/article-params-form/ArticleParamsForm';
+import { StyleOption, defaultArticleState } from '../../constants/articleProps';
+import { loadParams, saveParams } from '../../lib/storage';
 
 import styles from './App.module.scss';
 
@@ -27,14 +27,6 @@ export const App = () => {
 		parsed?.contentWidthSelectState || defaultArticleState.contentWidth
 	);
 
-	const setDefaultToAllSelections = () => {
-		setFontSelectState(defaultArticleState.fontFamilyOption);
-		setFontSizeSelectState(defaultArticleState.fontSizeOption);
-		setFontColorSelectState(defaultArticleState.fontColor);
-		setBackgroundColorSelectState(defaultArticleState.backgroundColor);
-		setContentWidthSelectState(defaultArticleState.contentWidth);
-	};
-
 	const [selectedStyles, setSelectedStyles] = useState({
 		fontFamily: fontSelectState.value,
 		fontSize: fontSizeSelectState.value,
@@ -43,7 +35,7 @@ export const App = () => {
 		contentWidth: contentWidthSelectState.value,
 	});
 
-	const handleFormSubmit = () => {
+	const applySelected = () => {
 		setSelectedStyles({
 			fontFamily: fontSelectState.value,
 			fontSize: fontSizeSelectState.value,
@@ -51,6 +43,30 @@ export const App = () => {
 			backgroundColor: backgroundColorSelectState.value,
 			contentWidth: contentWidthSelectState.value,
 		});
+	};
+
+	const applyDefaults = () => {
+		setSelectedStyles({
+			fontFamily: defaultArticleState.fontFamilyOption.value,
+			fontSize: defaultArticleState.fontSizeOption.value,
+			fontColor: defaultArticleState.fontColor.value,
+			backgroundColor: defaultArticleState.backgroundColor.value,
+			contentWidth: defaultArticleState.contentWidth.value,
+		});
+	};
+
+	const handleFormSubmit = () => {
+		applySelected();
+	};
+
+	const setDefaultToAllSelections = () => {
+		setFontSelectState(defaultArticleState.fontFamilyOption);
+		setFontSizeSelectState(defaultArticleState.fontSizeOption);
+		setFontColorSelectState(defaultArticleState.fontColor);
+		setBackgroundColorSelectState(defaultArticleState.backgroundColor);
+		setContentWidthSelectState(defaultArticleState.contentWidth);
+
+		applyDefaults();
 	};
 
 	useEffect(() => {
@@ -66,7 +82,7 @@ export const App = () => {
 		fontSizeSelectState,
 		fontColorSelectState,
 		backgroundColorSelectState,
-		contentWidthSelectState
+		contentWidthSelectState,
 	]);
 
 	return (
@@ -80,7 +96,8 @@ export const App = () => {
 					'--container-width': selectedStyles.contentWidth,
 					'--bg-color': selectedStyles.backgroundColor,
 				} as CSSProperties
-			}>
+			}
+		>
 			<ArticleParamsForm
 				fontSelectState={fontSelectState}
 				setFontSelectState={setFontSelectState}
@@ -95,7 +112,7 @@ export const App = () => {
 				onResetClick={setDefaultToAllSelections}
 				onSubmitClick={handleFormSubmit}
 			/>
-			<Article/>
+			<Article />
 		</div>
 	);
 };

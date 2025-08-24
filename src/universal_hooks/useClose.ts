@@ -1,30 +1,30 @@
-import { useEffect } from "react";
+import {useEffect} from "react";
 
-type TUseClose = {
+export type UseCloseParams<T extends HTMLElement = HTMLElement> = {
 	isOpen: boolean;
 	onClose: () => void;
-	rootRef: React.RefObject<HTMLElement>;
+	rootRef: React.RefObject<T>;
 };
-export function useClose({isOpen, onClose, rootRef}: TUseClose) {
+
+export function useClose<T extends HTMLElement = HTMLElement>({
+																  isOpen,
+																  onClose,
+																  rootRef,
+															  }: UseCloseParams<T>) {
 	useEffect(() => {
 		if (!isOpen) return;
 
-
 		function handleClickOutside(event: MouseEvent) {
-			const { target } = event;
+			const {target} = event;
 			const isOutsideClick =
 				target instanceof Node &&
 				rootRef.current &&
 				!rootRef.current.contains(target);
-			if (isOutsideClick) {
-				onClose();
-			}
+			if (isOutsideClick) onClose();
 		}
 
 		const handleEscape = (e: KeyboardEvent) => {
-			if (e.key === "Escape") {
-				onClose();
-			}
+			if (e.key === "Escape") onClose();
 		};
 
 		document.addEventListener("keydown", handleEscape);
@@ -36,4 +36,3 @@ export function useClose({isOpen, onClose, rootRef}: TUseClose) {
 		};
 	}, [isOpen, onClose, rootRef]);
 }
-
