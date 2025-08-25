@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type {Meta, StoryObj} from '@storybook/react';
 
-import { Separator } from './Separator';
+import {Separator} from './Separator';
 
 const meta: Meta<typeof Separator> = {
 	component: Separator,
@@ -11,6 +11,6 @@ type Story = StoryObj<typeof Separator>;
 
 export const SelectStory: Story = {
 	render: () => {
-		return <Separator />;
+		return <Separator/>;
 	},
 };

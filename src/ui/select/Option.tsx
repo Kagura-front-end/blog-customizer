@@ -1,10 +1,10 @@
-import { useRef } from 'react';
-import type { MouseEventHandler } from 'react';
+import {useRef} from 'react';
+import type {MouseEventHandler} from 'react';
 import clsx from 'clsx';
-import { OptionType } from 'src/constants/articleProps';
-import { Text } from 'src/ui/text';
-import { isFontFamilyClass } from './helpers/isFontFamilyClass';
-import { useEnterOptionSubmit } from './hooks/useEnterOptionSubmit';
+import {OptionType} from 'src/constants/articleProps';
+import {Text} from 'src/ui/text';
+import {isFontFamilyClass} from './helpers/isFontFamilyClass';
+import {useEnterOptionSubmit} from './hooks/useEnterOptionSubmit';
 
 import styles from './Select.module.scss';
 
@@ -15,16 +15,16 @@ type OptionProps = {
 
 export const Option = (props: OptionProps) => {
 	const {
-		option: { value, title, optionClassName, className },
+		option: {value, title, optionClassName, className},
 		onClick,
 	} = props;
 	const optionRef = useRef<HTMLLIElement>(null);
 
 	const handleClick =
 		(clickedValue: OptionType['value']): MouseEventHandler<HTMLLIElement> =>
-		() => {
-			onClick(clickedValue);
-		};
+			() => {
+				onClick(clickedValue);
+			};
 
 	useEnterOptionSubmit({
 		optionRef,

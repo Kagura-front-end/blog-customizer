@@ -1,14 +1,14 @@
-import { Text } from 'src/ui/text';
+import {Text} from 'src/ui/text';
 
 import styles from './Button.module.scss';
-import { clsx } from 'clsx';
+import {clsx} from 'clsx';
 
 export const Button = ({
-	title,
-	onClick,
-	htmlType,
-	type,
-}: {
+						   title,
+						   onClick,
+						   htmlType,
+						   type,
+					   }: {
 	title: string;
 	onClick?: () => void;
 	htmlType?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
@@ -18,8 +18,8 @@ export const Button = ({
 		<button
 			className={clsx(
 				styles.button,
-				{ [styles.button_apply]: type === 'apply' },
-				{ [styles.button_clear]: type === 'clear' }
+				{[styles.button_apply]: type === 'apply'},
+				{[styles.button_clear]: type === 'clear'}
 			)}
 			type={htmlType}
 			onClick={onClick}>

@@ -1,9 +1,9 @@
-import { useState, useEffect, CSSProperties } from 'react';
+import {useState, useEffect, CSSProperties} from 'react';
 
-import { Article } from 'components/article/Article';
-import { ArticleParamsForm } from 'components/article-params-form/ArticleParamsForm';
-import { StyleOption, defaultArticleState } from '../../constants/articleProps';
-import { loadParams, saveParams } from '../../lib/storage';
+import {Article} from 'components/article/Article';
+import {ArticleParamsForm} from 'components/article-params-form/ArticleParamsForm';
+import {StyleOption, defaultArticleState} from '../../constants/articleProps';
+import {loadParams, saveParams} from '../../lib/storage';
 
 import styles from './App.module.scss';
 
@@ -111,7 +111,7 @@ export const App = () => {
 				onResetClick={setDefaultToAllSelections}
 				onSubmitClick={handleFormSubmit}
 			/>
-			<Article />
+			<Article/>
 		</div>
 	);
 };

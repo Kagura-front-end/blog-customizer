@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import {useEffect} from 'react';
 
 type UseOutsideClickClose = {
 	isOpen: boolean;
@@ -8,14 +8,14 @@ type UseOutsideClickClose = {
 };
 
 export const useOutsideClickClose = ({
-	isOpen,
-	rootRef,
-	onClose,
-	onChange,
-}: UseOutsideClickClose) => {
+										 isOpen,
+										 rootRef,
+										 onClose,
+										 onChange,
+									 }: UseOutsideClickClose) => {
 	useEffect(() => {
 		const handleClick = (event: MouseEvent) => {
-			const { target } = event;
+			const {target} = event;
 			if (target instanceof Node && !rootRef.current?.contains(target)) {
 				isOpen && onClose?.();
 				onChange?.(false);

@@ -7,11 +7,11 @@ import {
 } from 'react';
 import clsx from 'clsx';
 
-import { ArrowButton } from 'src/ui/arrow-button';
-import { Button } from 'src/ui/button';
-import { Separator } from 'src/ui/separator';
-import { Select } from 'src/ui/select/Select';
-import { RadioGroup } from 'src/ui/radio-group/RadioGroup';
+import {ArrowButton} from 'src/ui/arrow-button';
+import {Button} from 'src/ui/button';
+import {Separator} from 'src/ui/separator';
+import {Select} from 'src/ui/select/Select';
+import {RadioGroup} from 'src/ui/radio-group/RadioGroup';
 
 import {
 	StyleOption,
@@ -23,7 +23,7 @@ import {
 } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
-import { useClose } from 'src/universal_hooks/useClose';
+import {useClose} from 'src/universal_hooks/useClose';
 
 type ArticleParamsFormProps = {
 	fontSelectState: StyleOption;
@@ -63,7 +63,7 @@ export const ArticleParamsForm = ({
 	const asideRef = useRef<HTMLElement>(null);
 
 	const handleClose = useCallback(() => setIsFormOpen(false), []);
-	useClose({ isOpen: isFormOpen, onClose: handleClose, rootRef: asideRef });
+	useClose({isOpen: isFormOpen, onClose: handleClose, rootRef: asideRef});
 
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -79,9 +79,9 @@ export const ArticleParamsForm = ({
 
 	return (
 		<>
-			<ArrowButton onClick={toggleForm} isOpen={isFormOpen} />
+			<ArrowButton onClick={toggleForm} isOpen={isFormOpen}/>
 			<aside
-				className={clsx(styles.container, { [styles.container_open]: isFormOpen })}
+				className={clsx(styles.container, {[styles.container_open]: isFormOpen})}
 				ref={asideRef}
 			>
 				<form className={styles.form} onSubmit={handleSubmit} onReset={handleFormReset}>
@@ -107,7 +107,7 @@ export const ArticleParamsForm = ({
 						title='цвет шрифта'
 					/>
 
-					<Separator />
+					<Separator/>
 
 					<Select
 						selected={backgroundColorSelectState}
@@ -124,8 +124,8 @@ export const ArticleParamsForm = ({
 					/>
 
 					<div className={styles.bottomContainer}>
-						<Button title='Сбросить' type='clear' htmlType='reset' />
-						<Button title='Применить' type='apply' htmlType='submit' />
+						<Button title='Сбросить' type='clear' htmlType='reset'/>
+						<Button title='Применить' type='apply' htmlType='submit'/>
 					</div>
 				</form>
 			</aside>

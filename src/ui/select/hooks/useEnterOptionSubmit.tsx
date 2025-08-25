@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { OptionType } from 'src/constants/articleProps';
+import {useEffect} from 'react';
+import {OptionType} from 'src/constants/articleProps';
 
 type UseEnterOptionSubmit = {
 	onClick: (value: OptionType['value']) => void;
@@ -8,10 +8,10 @@ type UseEnterOptionSubmit = {
 };
 
 export const useEnterOptionSubmit = ({
-	onClick,
-	value,
-	optionRef,
-}: UseEnterOptionSubmit) => {
+										 onClick,
+										 value,
+										 optionRef,
+									 }: UseEnterOptionSubmit) => {
 	useEffect(() => {
 		const option = optionRef.current;
 		if (!option) return;
