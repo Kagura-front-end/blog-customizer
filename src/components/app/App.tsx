@@ -1,5 +1,4 @@
 import { useState, useEffect, CSSProperties } from 'react';
-import clsx from 'clsx';
 
 import { Article } from 'components/article/Article';
 import { ArticleParamsForm } from 'components/article-params-form/ArticleParamsForm';
@@ -87,7 +86,7 @@ export const App = () => {
 
 	return (
 		<div
-			className={clsx(styles.main)}
+			className={styles.main}
 			style={
 				{
 					'--font-family': selectedStyles.fontFamily,

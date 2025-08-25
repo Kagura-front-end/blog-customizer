@@ -84,15 +84,3 @@ export const StyleSelect = ({
 };
 */
 
-// src/components/select/StyleSelect.tsx
-
-import { Select } from 'src/ui/select';
-import type { ComponentProps } from 'react';
-
-// Keep the old component name but delegate to the starter-kit UI Select.
-// This preserves external imports and stories while using the ready-made UI.
-export type StyleSelectProps = ComponentProps<typeof Select>;
-
-export const StyleSelect = (props: StyleSelectProps) => {
-	return <Select {...props} />;
-};

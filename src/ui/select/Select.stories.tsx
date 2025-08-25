@@ -1,13 +1,14 @@
-import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { StyleSelect } from './StyleSelect';
 
-const meta: Meta<typeof StyleSelect> = {
-	component: StyleSelect,
+import { Select } from './Select';
+import { useState } from 'react';
+
+const meta: Meta<typeof Select> = {
+	component: Select,
 };
 
 export default meta;
-type Story = StoryObj<typeof StyleSelect>;
+type Story = StoryObj<typeof Select>;
 
 const SelectWithState = () => {
 	const options = [
@@ -16,16 +17,17 @@ const SelectWithState = () => {
 		{ title: '3 опция', value: '3 опция', className: '' },
 		{ title: '4 опция', value: '4 опция', className: '' },
 	];
-
 	const [selected, setSelected] = useState(options[0]);
 
 	return (
-		<StyleSelect
-			title='Выберите опцию'
-			selected={selected}
-			options={options}
-			onChange={setSelected}
-		/>
+		<>
+			<Select
+				selected={selected}
+				onChange={setSelected}
+				options={options}
+				title='Название выпадающего списка'
+			/>
+		</>
 	);
 };
 

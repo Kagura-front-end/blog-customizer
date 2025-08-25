@@ -5,7 +5,7 @@ import {
 	type Dispatch,
 	type SetStateAction,
 } from 'react';
-import clsx from 'clsx';
+import cn from 'classnames';
 
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
@@ -23,7 +23,7 @@ import {
 } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
-import { useClose } from 'src/universal_hooks/useClose';
+import {useClose} from 'src/universal_hooks/useClose';
 
 type ArticleParamsFormProps = {
 	fontSelectState: StyleOption;
@@ -76,14 +76,12 @@ export const ArticleParamsForm = ({
 	};
 
 	const toggleForm = () => setIsFormOpen((prev) => !prev);
+	const container = isFormOpen ? styles.container_open : styles.container;
 
 	return (
 		<>
 			<ArrowButton onClick={toggleForm} isOpen={isFormOpen} />
-			<aside
-				className={clsx(styles.container, { [styles.container_open]: isFormOpen })}
-				ref={asideRef}
-			>
+			<aside className={cn(styles.container, container)} ref={asideRef}>
 				<form className={styles.form} onSubmit={handleSubmit} onReset={handleFormReset}>
 					<Select
 						selected={fontSelectState}
@@ -124,8 +122,8 @@ export const ArticleParamsForm = ({
 					/>
 
 					<div className={styles.bottomContainer}>
-						<Button title='Сбросить' type='clear' htmlType='reset' />
-						<Button title='Применить' type='apply' htmlType='submit' />
+						<Button title='Сбросить' type='clear' htmlType='reset'/>
+						<Button title='Применить' type='apply' htmlType='submit'/>
 					</div>
 				</form>
 			</aside>

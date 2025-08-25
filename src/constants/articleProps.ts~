@@ -14,8 +14,6 @@ export type StyleOption = {
 	className: string;
 	optionClassName?: string;
 };
-export type OptionType = StyleOption;
-
 
 export const fontFamilyOptions: StyleOption[] = [
 	{ title: 'Open Sans', value: 'Open Sans', className: fontFamilyClasses[0] },
